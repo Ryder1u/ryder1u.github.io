@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mengchen (Ryder) Lu</title>
+<meta name="description" content="Mengchen (Ryder) Lu, PhD researcher in Computer Science at the University of Exeter, working on LLM-based agentic AI and agent harness optimisation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --ink: #1c1b19;
+    --ink-2: #57544d;
+    --ink-3: #8a867c;
+    --line: #e7e4dc;
+    --accent: #1f5f8b;
+    --accent-soft: #e6eff6;
+    --shadow: 0 1px 2px rgba(28, 27, 25, .04), 0 8px 24px rgba(28, 27, 25, .06);
+    --serif: "Newsreader", "Noto Serif SC", Georgia, serif;
+    --sans: "Inter", "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413;
+      --surface: #1c1c1a;
+      --ink: #f2f0ea;
+      --ink-2: #c3c0b6;
+      --ink-3: #8f8c83;
+      --line: #2e2d2a;
+      --accent: #7db8e0;
+      --accent-soft: #1d2b36;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* language switching: every bilingual text has an English and a Chinese span */
+  [data-lang="en"] [lang="zh"], [data-lang="zh"] [lang="en"] { display: none; }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* top bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .brand { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--ink); }
+  .brand:hover { text-decoration: none; }
+  nav { display: flex; align-items: center; gap: 22px; font-size: 14px; }
+  nav a { color: var(--ink-2); }
+  nav a:hover { color: var(--ink); text-decoration: none; }
+  .lang-toggle {
+    font: 500 13px var(--sans); color: var(--ink-2); background: transparent;
+    border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  }
+  .lang-toggle:hover { border-color: var(--ink-3); color: var(--ink); }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 200px 1fr; gap: 44px; align-items: center; padding: 72px 0 56px; }
+  .photo {
+    width: 200px; height: 200px; border-radius: 20px; object-fit: cover;
+    background: var(--accent-soft); box-shadow: var(--shadow);
+  }
+  .photo-fallback {
+    width: 200px; height: 200px; border-radius: 20px; display: none; align-items: center; justify-content: center;
+    background: var(--accent-soft); color: var(--accent); font: 600 64px var(--serif); box-shadow: var(--shadow);
+  }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 44px; line-height: 1.1; margin: 0 0 6px; letter-spacing: -.01em; }
+  h1 .alt { color: var(--ink-3); font-size: 26px; margin-left: 10px; }
+  .role { font-size: 17px; color: var(--ink-2); margin: 0 0 18px; }
+  .role b { color: var(--ink); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500;
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink);
+    background: var(--surface);
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  .btn.primary:hover { opacity: .9; color: var(--surface); }
+  .btn svg { width: 15px; height: 15px; }
+
+  /* sections */
+  section { padding: 44px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-family: var(--serif); font-weight: 500; font-size: 28px; margin: 0 0 22px;
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  h2 .num { font: 500 13px var(--sans); color: var(--accent); letter-spacing: .08em; }
+  p { margin: 0 0 14px; color: var(--ink-2); }
+  p strong { color: var(--ink); font-weight: 600; }
+
+  .interests { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px; box-shadow: var(--shadow);
+  }
+  .card .tag { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .card h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; margin: 6px 0 8px; line-height: 1.25; }
+  .card p { font-size: 14.5px; line-height: 1.6; margin: 0; }
+
+  .now {
+    margin-top: 22px; padding: 16px 20px; border-left: 3px solid var(--accent);
+    background: var(--accent-soft); border-radius: 0 12px 12px 0; font-size: 15px; color: var(--ink-2);
+  }
+  .now b { color: var(--ink); }
+
+  /* CV timeline */
+  h3.sub { font: 600 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin: 8px 0 4px; }
+  h3.sub ~ h3.sub { margin-top: 30px; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 150px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+  .timeline li:last-child { border-bottom: 0; }
+  .when { font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .what h3 { margin: 0; font-size: 17px; font-weight: 600; color: var(--ink); }
+  .what .org { color: var(--ink-2); font-size: 15px; }
+  .what .note { color: var(--ink-3); font-size: 14px; margin-top: 4px; }
+  .cv-cta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 26px;
+    padding: 18px 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  .cv-cta p { margin: 0; }
+
+  footer { padding: 36px 0 56px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
+
+  @media (max-width: 720px) {
+    nav .navlink { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 24px; padding: 44px 0 36px; text-align: left; }
+    .photo, .photo-fallback { width: 132px; height: 132px; border-radius: 16px; font-size: 44px; }
+    h1 { font-size: 34px; }
+    h1 .alt { display: block; margin: 4px 0 0; font-size: 20px; }
+    .interests { grid-template-columns: 1fr; }
+    .timeline li { grid-template-columns: 1fr; gap: 4px; }
+    .cv-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span lang="en">Ryder Lu</span><span lang="zh">Ryder Lu</span>
+    </a>
+    <nav>
+      <a class="navlink" href="#about"><span lang="en">About</span><span lang="zh">简介</span></a>
+      <a class="navlink" href="#research"><span lang="en">Research</span><span lang="zh">研究方向</span></a>
+      <a class="navlink" href="#cv"><span lang="en">CV</span><span lang="zh">履历</span></a>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+        <span lang="en">中文</span><span lang="zh">EN</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <div class="hero">
+    <div>
+      <!-- Put your photo next to this file and name it headshot.jpg (a square photo works best). -->
+      <img class="photo" src="headshot.jpg" alt="Photo of Mengchen (Ryder) Lu"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="photo-fallback" aria-hidden="true">ML</div>
+    </div>
+    <div>
+      <!-- TODO: add your Chinese name inside the <span class="alt"> below, e.g. <span class="alt">陆…</span> -->
+      <h1>Mengchen (Ryder) Lu<span class="alt"></span></h1>
+      <p class="role">
+        <span lang="en"><b>PhD Researcher in Computer Science</b> · University of Exeter, UK</span>
+        <span lang="zh"><b>计算机科学博士研究生</b> · 英国埃克塞特大学</span>
+      </p>
+      <div class="links">
+        <a class="btn primary" href="cv.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>
+          <span lang="en">CV (PDF)</span><span lang="zh">简历 PDF</span>
+        </a>
+        <a class="btn" href="mailto:ml1092@exeter.ac.uk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          Email
+        </a>
+        <!-- Uncomment and fill in when ready:
+        <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=YOUR-ID" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn" href="https://www.linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener">LinkedIn</a>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <h2><span class="num">01</span><span lang="en">About</span><span lang="zh">简介</span></h2>
+    <div lang="en">
+      <p>I am a PhD researcher in Computer Science at the <strong>University of Exeter</strong>, supervised by
+        <strong>Dr Shiqiang Wang</strong> and <strong>Dr George De Ath</strong>. I started in 2026 on the MPhil route,
+        which transfers to the PhD after the progression review.</p>
+      <p>Before Exeter I received my master's in <strong>Communication Engineering (IoT)</strong> from <strong>Nanyang Technological University (NTU), Singapore</strong>, and earned bachelor's degrees in Communication Engineering from <strong>Beijing Jiaotong University</strong> and in Electronics and Communications Engineering from <strong>Lancaster University</strong>. I also worked as an engineering intern on wireless network planning and optimisation at China Mobile and Beijing ZX-CE Technology.</p>
+    </div>
+    <div lang="zh">
+      <p>我是<strong>英国埃克塞特大学</strong>计算机科学专业的博士研究生，导师是
+        <strong>Shiqiang Wang 博士</strong>和 <strong>George De Ath 博士</strong>。我于 2026 年入学，目前在 MPhil 阶段，
+        通过阶段考核后转为 PhD。</p>
+      <p>此前，我在<strong>新加坡南洋理工大学（NTU）</strong>获得<strong>通信工程（物联网方向）</strong>硕士学位；本科就读于<strong>北京交通大学</strong>，同时获得北京交通大学通信工程学士学位和<strong>英国兰卡斯特大学</strong>电子与通信工程学士学位。我还曾在中国移动和北京 ZX-CE 科技有限公司担任电子信息工程实习生，从事无线网络规划与优化工作。</p>
+    </div>
+  </section>
+
+  <!-- ===================== RESEARCH ===================== -->
+  <section id="research">
+    <h2><span class="num">02</span><span lang="en">Research</span><span lang="zh">研究方向</span></h2>
+    <p lang="en">I study <strong>LLM-based agentic AI</strong>, and in particular the <strong>harness</strong> around a model:
+      the prompts, tools, control flow and context management that turn a frozen LLM into an agent. The same model can
+      perform very differently depending on its harness, and I want to understand and optimise that layer.</p>
+    <p lang="zh">我研究<strong>基于大语言模型的智能体（agentic AI）</strong>，尤其关注模型外面的那一层 <strong>harness</strong>：
+      也就是把一个固定的大模型变成智能体所需要的 prompt、工具、控制流程和上下文管理。同一个模型配上不同的 harness，
+      表现可能差别很大，我希望理解并优化这一层。</p>
+
+    <div class="interests">
+      <div class="card">
+        <div class="tag"><span lang="en">Harness design</span><span lang="zh">Harness 设计</span></div>
+        <h3><span lang="en">Agent harness optimisation</span><span lang="zh">智能体 harness 优化</span></h3>
+        <p><span lang="en">Which tools, prompts and feedback loops actually make an agent better, and how to improve them automatically.</span>
+           <span lang="zh">哪些工具、prompt 和反馈循环真正让智能体变得更好，以及如何自动地改进它们。</span></p>
+      </div>
+      <div class="card">
+        <div class="tag"><span lang="en">Efficiency</span><span lang="zh">效率</span></div>
+        <h3><span lang="en">Accuracy vs. cost</span><span lang="zh">准确率与成本的权衡</span></h3>
+        <p><span lang="en">Agents can spend many times more tokens than a single model call. I look at where that cost goes and when it pays off.</span>
+           <span lang="zh">智能体消耗的 token 可能是单次调用的许多倍。我关注这些成本花在哪里，以及什么时候值得。</span></p>
+      </div>
+      <div class="card">
+        <div class="tag"><span lang="en">Evaluation</span><span lang="zh">评测</span></div>
+        <h3><span lang="en">Reliable agent evaluation</span><span lang="zh">可靠的智能体评测</span></h3>
+        <p><span lang="en">Controlled comparisons on coding benchmarks with locally served open-source models.</span>
+           <span lang="zh">在本地部署的开源模型上，用编程基准做可控的对比实验。</span></p>
+      </div>
+    </div>
+
+    <div class="now">
+      <span lang="en"><b>Currently:</b> comparing a minimal and a full coding-agent harness with local open-source models,
+        and studying where the extra tokens of multi-turn agents go.</span>
+      <span lang="zh"><b>目前在做：</b>用本地开源模型对比最小 harness 与完整 coding agent harness，
+        并分析多轮智能体多消耗的 token 都花在了哪里。</span>
+    </div>
+  </section>
+
+  <!-- ===================== CV ===================== -->
+  <section id="cv">
+    <h2><span class="num">03</span><span lang="en">CV</span><span lang="zh">履历</span></h2>
+    <h3 class="sub"><span lang="en">Education</span><span lang="zh">教育经历</span></h3>
+    <ul class="timeline">
+      <li>
+        <div class="when">2026 – <span lang="en">present</span><span lang="zh">至今</span></div>
+        <div class="what">
+          <h3><span lang="en">MPhil / PhD in Computer Science</span><span lang="zh">计算机科学 MPhil / PhD</span></h3>
+          <div class="org"><span lang="en">University of Exeter, UK</span><span lang="zh">英国埃克塞特大学</span></div>
+          <div class="note"><span lang="en">Supervisors: Dr Shiqiang Wang, Dr George De Ath</span>
+            <span lang="zh">导师：Shiqiang Wang 博士、George De Ath 博士</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="when">2024 – 2026</div>
+        <div class="what">
+          <h3><span lang="en">Master's in Communication Engineering (IoT)</span><span lang="zh">通信工程（物联网方向）硕士</span></h3>
+          <div class="org"><span lang="en">Nanyang Technological University (NTU), Singapore</span><span lang="zh">新加坡南洋理工大学</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="when">2020 – 2024</div>
+        <div class="what">
+          <h3><span lang="en">BEng in Communication Engineering</span><span lang="zh">通信工程 工学学士</span></h3>
+          <div class="org"><span lang="en">Beijing Jiaotong University, China</span><span lang="zh">北京交通大学</span></div>
+          <h3 style="margin-top:10px"><span lang="en">BEng (Hons) in Electronics and Communications Engineering</span><span lang="zh">电子与通信工程 工学学士（荣誉）</span></h3>
+          <div class="org"><span lang="en">Lancaster University, UK</span><span lang="zh">英国兰卡斯特大学</span></div>
+          <div class="note"><span lang="en">Second Class Honours (Division One)</span><span lang="zh">二等一级荣誉学位</span></div>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="sub"><span lang="en">Experience</span><span lang="zh">实习经历</span></h3>
+    <ul class="timeline">
+      <li>
+        <div class="when">2023.06 – 2023.09</div>
+        <div class="what">
+          <h3><span lang="en">Electronic Information Engineer Intern</span><span lang="zh">电子信息工程实习生</span></h3>
+          <div class="org">Beijing ZX-CE Technology Co., Ltd.</div>
+          <div class="note"><span lang="en">Wireless network planning, testing and optimisation; signal optimisation for 56 base stations on a university campus.</span>
+            <span lang="zh">无线网络规划、测试与优化；参与优化某高校校区内 56 个基站的信号。</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="when">2022.12 – 2023.03</div>
+        <div class="what">
+          <h3><span lang="en">Electronic Information Engineer Intern</span><span lang="zh">电子信息工程实习生</span></h3>
+          <div class="org"><span lang="en">China Mobile</span><span lang="zh">中国移动</span></div>
+          <div class="note"><span lang="en">Network testing and backend signalling analysis; identified and resolved 226 problem areas.</span>
+            <span lang="zh">网络测试与后台信令分析；定位并解决了 226 个问题区域。</span></div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="cv-cta">
+      <p><span lang="en">The full CV, including projects, leadership roles and awards, is available as a PDF.</span>
+         <span lang="zh">完整简历（包括项目、学生工作和获奖情况）可下载 PDF。</span></p>
+      <a class="btn primary" href="cv.pdf" target="_blank" rel="noopener">
+        <span lang="en">Download CV</span><span lang="zh">下载简历</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span lang="en">© 2026 Mengchen (Ryder) Lu · Last updated October 2026</span>
+    <span lang="zh">© 2026 Mengchen (Ryder) Lu · 最后更新于 2026 年 10 月</span>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function setLang(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    setLang(saved || ((navigator.language || "").toLowerCase().indexOf("zh") === 0 ? "zh" : "en"));
+    document.getElementById("langToggle").addEventListener("click", function () {
+      setLang(root.getAttribute("data-lang") === "zh" ? "en" : "zh");
+    });
+  })();
+</script>
+</body>
+</html>
